@@ -14,7 +14,7 @@ model = model_utils.load_model("regression.joblib")
 
 @app.get("/")
 def read_root():
-    return {"Hello": "World !!"}
+    return {"Hello": "World !! 2"}
 
 
 @app.post("/predict/")
