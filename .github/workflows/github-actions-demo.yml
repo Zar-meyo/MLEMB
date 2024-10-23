@@ -43,4 +43,4 @@ jobs:
           pass: ${{ secrets.SSH_PASSWORD }}
           run: |
             docker pull zarmeyo/mlemb:main
-            docker restart virgile_app || docker run --name virgile_app -p 5432:80 zarmeyo/mlemb:main
+            docker restart virgile_app || docker run -d --name virgile_app -p 5432:80 zarmeyo/mlemb:main
