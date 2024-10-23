@@ -34,10 +34,14 @@ jobs:
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
-
-      - name: Generate artifact attestation
-        uses: actions/attest-build-provenance@v1
+  connect_ssh:
+    name: Deploy on the vm
+    runs-on: ubuntu-latest
+    steps:
+      - name: executing remote ssh commands using password
+        uses: appleboy/ssh-action@v1.1.0
         with:
-          subject-name: zarmeyo/mlemb
-          subject-digest: ${{ steps.push.outputs.digest }}
-          push-to-registry: true
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USERNAME }}
+          password: ${{ SSH_secrets.PASSWORD }}
+          script: whoami
