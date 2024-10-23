@@ -34,10 +34,7 @@ jobs:
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
-  connect_ssh:
-    name: Deploy on the vm
-    runs-on: ubuntu-latest
-    steps:
+
       - name: Run sshpass commands
         uses: matheusvanzan/sshpass-action@v2
         with:
@@ -45,4 +42,5 @@ jobs:
           user: ${{ secrets.SSH_USERNAME }}
           pass: ${{ secrets.SSH_PASSWORD }}
           run: |
-            whoami
+            docker pull zarmeyo/mlemb:main
+            docker restart virgile_app || docker run --name virgile_app -p 5432:80 zarmeyo/mlemb:main
