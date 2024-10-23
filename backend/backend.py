@@ -10,7 +10,7 @@ class HouseInput(BaseModel):
     garden: bool
 
 
-model = model_utils.load_model("/code/regression.joblib")
+model = model_utils.load_model("regression.joblib")
 
 @app.get("/")
 def read_root():
