@@ -38,10 +38,11 @@ jobs:
     name: Deploy on the vm
     runs-on: ubuntu-latest
     steps:
-      - name: executing remote ssh commands using password
-        uses: appleboy/ssh-action@v1.1.0
+      - name: Run sshpass commands
+        uses: matheusvanzan/sshpass-action@v2
         with:
-          host: ${{ secrets.SSH_HOST }}
-          username: ${{ secrets.SSH_USERNAME }}
-          password: ${{ SSH_secrets.PASSWORD }}
-          script: whoami
+          host: ${{ secrets.SERVER_HOST }}
+          user: ${{ secrets.SERVER_USER }}
+          pass: ${{ secrets.SERVER_PASS }}
+          run: |
+            whoami
